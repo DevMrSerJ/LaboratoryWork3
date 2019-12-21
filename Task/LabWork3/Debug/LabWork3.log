@@ -1,0 +1,8 @@
+﻿  LabWork3.cpp
+c:\users\ivano\onedrive\документы\labs\c++\laboratorywork3\task\labwork3\labwork3.cpp(49): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ivano\onedrive\документы\labs\c++\laboratorywork3\task\labwork3\labwork3.cpp(134): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ivano\onedrive\документы\labs\c++\laboratorywork3\task\labwork3\labwork3.cpp(172): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ivano\onedrive\документы\labs\c++\laboratorywork3\task\labwork3\labwork3.cpp(327): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+c:\users\ivano\onedrive\документы\labs\c++\laboratorywork3\task\labwork3\labwork3.cpp(331): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\ivano\onedrive\документы\labs\c++\laboratorywork3\task\labwork3\labwork3.cpp(449): warning C4018: <: несоответствие типов со знаком и без знака
+  LabWork3.vcxproj -> C:\Users\ivano\OneDrive\Документы\Labs\C++\LaboratoryWork3\Task\Debug\LabWork3.exe
