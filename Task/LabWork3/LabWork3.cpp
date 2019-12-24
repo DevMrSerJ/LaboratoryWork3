@@ -308,15 +308,15 @@ void Task2()
 	getchar();
 }
 
-// Создаём бинарный файл
+// Создаём текстовый файл
 void CreateBinarFile(char* fileName)
 {
-	FILE * BinarFile;
-	const int maxLength = 20; // Количество чисел в бинарном файле
+	FILE * TextFile;
+	const int maxLength = 20; // Количество чисел в текстовом файле
 	const int firs_value = -20; // Левая граница случайных чисел
 	const int last_value = 20; // Правая граница случайных чисел
 
-	BinarFile = fopen(fileName, "wb");
+	TextFile = fopen(fileName, "wb");
 
 	char* values = (char*)malloc(maxLength*5);
 
@@ -338,31 +338,31 @@ void CreateBinarFile(char* fileName)
 	}
 	values[u] = '\0';
 
-	values = (char*)realloc(values, u+2);
+	values = (char*)realloc(values, u+1);
 
-	fwrite(values, 1, u+2, BinarFile);
-	fclose(BinarFile);
+	fwrite(values, 1, u+1, TextFile);
+	fclose(TextFile);
 }
 
-// Чтение бинарного файла
+// Чтение тестового файла
 void ReadBinarFile(char* fileName)
 {
-	FILE * BinarFile;
+	FILE * TextFile;
 
-	BinarFile = fopen(fileName, "rb");
+	TextFile = fopen(fileName, "rt");
 
 	// определяем размер файла
-	fseek(BinarFile, 0, SEEK_END);
-	long lSize = ftell(BinarFile);
-	rewind(BinarFile);
+	fseek(TextFile, 0, SEEK_END);
+	long lSize = ftell(TextFile);
+	rewind(TextFile);
 
 	char * buffer = (char*)malloc(sizeof(char) * lSize);
 
-	size_t result = fread(buffer, 1, lSize, BinarFile);
+	fgets(buffer, 300, TextFile);
 
 	cout << buffer << endl;
 
-	fclose(BinarFile);
+	fclose(TextFile);
 }
 
 void Task3()
@@ -380,25 +380,25 @@ void Task3()
 	fileName[4] = '3';
 	fileName[5] = '\0';
 
-	CreateBinarFile(fileName); // Создаём бинарный файл
+	CreateBinarFile(fileName); // Создаём текстовый файл
 
 	cout << "\tДанные файла, до обработки:\n" << endl;
 
-	ReadBinarFile(fileName); // Читаем записи бинарного файла
+	ReadBinarFile(fileName); // Читаем записи текстовый файла
 
-	FILE * BinarFileRead;
+	FILE * TextFileRead;
 
-	BinarFileRead = fopen(fileName, "r+b");
+	TextFileRead = fopen(fileName, "r+t");
 
 	// определяем размер файла
-	fseek(BinarFileRead, 0, SEEK_END);
-	long lSize = ftell(BinarFileRead);
-	rewind(BinarFileRead);
+	fseek(TextFileRead, 0, SEEK_END);
+	long lSize = ftell(TextFileRead);
+	rewind(TextFileRead);
 
 	char * buffer = (char*)malloc(sizeof(char) * lSize);
 	int * values = new int[lSize];
 
-	int result = fread(buffer, 1, lSize, BinarFileRead);
+	int result = fread(buffer, 1, lSize, TextFileRead);
 	int j = 0;
 	string str = "";
 
@@ -434,9 +434,9 @@ void Task3()
 
 	delete [] values;
 
-	fclose(BinarFileRead);
+	fclose(TextFileRead);
 
-	BinarFileRead = fopen(fileName, "wb");
+	TextFileRead = fopen(fileName, "wt");
 
 	char* numb = (char*)malloc(j * 5);
 
@@ -458,16 +458,16 @@ void Task3()
 
 	numb = (char*)realloc(numb, u + 1);
 
-	fwrite(numb, 1, u + 1, BinarFileRead);
+	fwrite(numb, 1, u + 1, TextFileRead);
 
-	fclose(BinarFileRead);
+	fclose(TextFileRead);
 
 	free(numb);
 	delete [] valueNew;
 	
 	cout << "\n\n\tДанные файла, после обработки:\n" << endl;
 
-	ReadBinarFile(fileName); // Читаем записи бинарного файла
+	ReadBinarFile(fileName); // Читаем записи текстового файла
 		
 	cout << "\nНажмите Enter чтобы выйти в меню...";
 	getchar();
@@ -487,7 +487,7 @@ int main()
 		cout << "Меню: " << endl;
 		cout << "1 - работа с файлом. Удалить фразы, содержащие две буквы 'О'" << endl;
 		cout << "2 - работа с матрицей в текстовом файле" << endl;
-		cout << "3 - работа с компонентами бинарного файла" << endl;
+		cout << "3 - работа с компонентами текстового файла" << endl;
 		cout << "0 - выход из программы" << endl;
 		cout << "Введите номер задания: ";
 		int numLesson;
